@@ -15,15 +15,11 @@ label is not graded.
 
 **Pull request**
 
-[Link to the pull request you opened. It must be the pull request's own page on the Path
-Review repo, not your fork's branch page.]
+https://github.com/codepath/pathreview-ai301-fa26-s1/pull/99
 
 **Branch**
 
-[The name of the branch the pull request comes from, exactly as it appears in your fork.
-The naming shape is a type prefix, then the issue number, then a short description. **The
-issue number in the branch name must be the number of the issue the pull request fixes** —
-a name carrying any other number does not satisfy this field.]
+fix/73-env-openrouter-key
 
 ## Eval iterations
 
@@ -32,28 +28,24 @@ fields.
 
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+1. Smoke run (`--limit 3`): 3/3 scored packages matched.
+2. Full saved run: `"agreement: 19/20 scored items  (bar: 18/20: PASS)"`
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+I analyzed `pkg-16`. My rubric decided `reject`, while the gold label was `accept`. The package's test evidence said, `"go test ./pkg/minikube/machine/... ./cmd/... passes."` My `test-evidence` check required an observable result rather than a bare statement that tests pass, so it treated that evidence too strictly. The package also included before/after behavior for the corrupt and valid tar cases, but my rubric still rejected it on `description-fidelity` and `test-evidence`. This was the one disagreement in the 19/20 full run.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/pr-precheck/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+I kept this `test-evidence` pass condition:
+
+> "The evidence shows an observable outcome for the relevant reproduction path that distinguishes the implemented behavior from the reproduced failure, and shows the outcome of applicable repository checks or test suite. A bare claim such as "tests pass" without an observable result does not pass."
+
+I wrote it this way so a PR cannot pass merely by claiming that testing happened. It requires evidence of the relevant behavior and the repository checks. The full eval showed that this wording is conservative enough to reject `pkg-16`, whose gold label was `accept`, but it correctly handled all four `not-tested` packages. I chose not to loosen the check after that result because doing so could make genuinely under-tested packages easier to accept.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+I made no rubric changes after the final full run. The run scored 19/20, and every scored package in `not-tested` (4/4), `silent-drift` (4/4), `standards-wall` (2/2), and `unreviewable` (3/3) matched the gold label. The only miss was `pkg-16`, a false reject in `clear-accept`. I accepted that conservative false reject rather than loosen `description-fidelity` or `test-evidence` and risk creating false accepts in the failure categories.
 
 ---
 
