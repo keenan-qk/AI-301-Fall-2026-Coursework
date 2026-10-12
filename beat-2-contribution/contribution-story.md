@@ -55,10 +55,17 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Built and testing issue-scout against real GitHub issues**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I adapted my Unit 1 issue-select skill into issue-scout, preserving its
+evidence guide and evaulation rubric while adding a GitHub issue-discovery
+workflow. I created a search strategy based on my experience with Python,
+C++, and C# and my interests in embedded systems, aerospace, and game
+development. My initial search returned no results, so I changed to explicit
+GH CLI search flags and successfully found candidates. I then evaluated five
+issues, receiving three accept verdicts and two rejects, and identified an
+ambiguity in my repository-activity criterion that I clarified after the scan.
+
 
 **Unit 6: [one line on the tool work]**
 
