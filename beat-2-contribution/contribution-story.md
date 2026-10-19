@@ -7,12 +7,11 @@ the repository is not read. **Keep every section header below under its exact na
 format criteria grade exactly that. Your course repo link is the whole submission: no tool
 files and no evidence uploads are part of Assignment 5.
 
-**Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
-**Pull Request:** [GitHub PR link, once opened]
+**Contribution Number:** 1
+**Student:** Keenan Kornegay
+**GitHub Username:** keenan-qk
+**Issue:** https://github.com/codepath/pathreview-ai301-fa26-s1/issues/73
+**Pull Request:** Not opened yet
 
 One repository, built across units 5 to 8, telling the whole story of your real
 contribution. Fill it as you work, not at the end — the sections below ask for evidence that
@@ -67,11 +66,9 @@ issues, receiving three accept verdicts and two rejects, and identified an
 ambiguity in my repository-activity criterion that I clarified after the scan.
 
 
-**Unit 6: [one line on the tool work]**
+**Unit 6: Built and tested voice-guard and repository memory**
 
-[2-4 sentences: the voice-guard, the repo-memory file. What broke or
-fell short, and what changed because of it. "Nothing broke" counts when
-it is true - say how you know.]
+I built a voice-guard, a safety check for Claude Code that reviews the wording of GitHub comments before Claude is allowed to post them, and a repository-specific CLAUDE.local.md file, which gives Claude repository-specific instructions about a project I am working on. These produced automatic blocks, a passing manual check, and Claude reading the repo instructions that I crafted. The automatic hook blocked a command with no readable comment body, however, this was expected. I then verified the hook behavior and used a manual draft-check.
 
 **Unit 7: [one line on the tool work]**
 
